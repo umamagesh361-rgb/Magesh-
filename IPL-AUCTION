@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>IPL Auction</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    background: #111;
+    padding: 15px;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.card {
+    background: white;
+    color: black;
+    width: 250px;
+    margin: 15px;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+button {
+    padding: 10px 15px;
+    margin: 5px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.bid {
+    background: green;
+    color: white;
+}
+
+.sell {
+    background: red;
+    color: white;
+}
+
+.team {
+    margin-top: 10px;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🏏 IPL Auction Website</h1>
+
+<div class="container">
+
+    <!-- Player 1 -->
+    <div class="card">
+        <h2>Virat Kohli</h2>
+        <p>Base Price: ₹2,00,00,000</p>
+        <h3>Current Bid: ₹ <span id="bid1">20000000</span></h3>
+
+        <button class="bid" onclick="increaseBid('bid1')">+10 Lakh</button>
+        <button class="sell" onclick="sellPlayer('Virat Kohli','bid1','team1')">Sell</button>
+
+        <div class="team" id="team1"></div>
+    </div>
+
+    <!-- Player 2 -->
+    <div class="card">
+        <h2>MS Dhoni</h2>
+        <p>Base Price: ₹1,50,00,000</p>
+        <h3>Current Bid: ₹ <span id="bid2">15000000</span></h3>
+
+        <button class="bid" onclick="increaseBid('bid2')">+10 Lakh</button>
+        <button class="sell" onclick="sellPlayer('MS Dhoni','bid2','team2')">Sell</button>
+
+        <div class="team" id="team2"></div>
+    </div>
+
+    <!-- Player 3 -->
+    <div class="card">
+        <h2>Rohit Sharma</h2>
+        <p>Base Price: ₹2,00,00,000</p>
+        <h3>Current Bid: ₹ <span id="bid3">20000000</span></h3>
+
+        <button class="bid" onclick="increaseBid('bid3')">+10 Lakh</button>
+        <button class="sell" onclick="sellPlayer('Rohit Sharma','bid3','team3')">Sell</button>
+
+        <div class="team" id="team3"></div>
+    </div>
+
+</div>
+
+<script>
+function increaseBid(id) {
+    let bid = document.getElementById(id);
+    bid.innerText = parseInt(bid.innerText) + 1000000;
+}
+
+function sellPlayer(playerName, bidId, teamId) {
+
+    let teams = ["CSK", "MI", "RCB", "KKR", "SRH", "DC"];
+    let team = prompt("Enter Team Name:\nCSK / MI / RCB / KKR / SRH / DC");
+
+    if (teams.includes(team)) {
+        let price = document.getElementById(bidId).innerText;
+
+        document.getElementById(teamId).innerHTML =
+            "Sold to " + team + " for ₹" + price;
+    }
+    else {
+        alert("Invalid Team Name");
+    }
+}
+</script>
+
+</body>
+</html>
